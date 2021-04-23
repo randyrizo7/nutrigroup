@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Followed groups {% endblock %}
+{% block body %}
+
+{% for follower in group.followers %}
+
+        <div>
+          <div>
+            <div>
+              <div>
+                <a href="/user/{{ follower.id }}" >
+                  <p>@{{ follower.username }}</p>
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {% endfor %}
+
+{% endblock %}

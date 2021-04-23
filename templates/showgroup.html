@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %} Group{% endblock %}
+{% block body %}
+
+
+      <ul>
+        <li>
+          <a href="{{ url_for('user_profile', user_id=group.user.id) }}">
+            Creator: {{ group.user.first_name }}'s
+          </a>
+          <div>
+            <div>
+              <a href="/users/{{ group.user.id }}">@{{ group.user.username }}</a>
+              {% if g.user %}
+                {% if g.user.id == group.user.id %}
+                  <form method="POST"
+                        action="/group/{{ group.id }}/delete">
+                    <button>Delete</button>
+                  </form>
+                {% elif g.user.is_following(group) %}
+                  <form method="POST"
+                        action="/group/stop-following/{{ group.user.id }}">
+                    <button>Unfollow</button>
+                  </form>
+                  <form method="POST" action="/group/{{ group.id }}/post/new">
+                    <button>Add comment</button>
+                  </form>
+                {% else %}
+                  <form method="POST" action="/user/follow/{{ group.id }}">
+                    <button>Follow</button>
+                  </form>
+                {% endif %}
+              {% endif %}
+            </div>
+            <p>Group: {{ group.title }} 
+              <span>{{ group.description }}</span></p>
+          </div>
+        </li>
+      </ul>
+
+      <div>
+      {% for posts in post %}
+
+
+      
+        <p>{{ posts.text }}</p>
+        {{ posts.timestamp.strftime('%d %B %Y') }}</span>
+
+      
+
+      {% endfor %}
+    </div>
+
+
+      
+
+{% endblock %}

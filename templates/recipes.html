@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} Recipes searcher {% endblock %}
+{% block body %}
+<h2> <a href="/"> Recipes for you: </a></h2>
+<div>
+  <ul>
+      {% for recipe in recipes %}
+          <li>
+              <img src="{{recipe['image']}}">
+              <div>
+                  <h5><a href="/recipe?id={{ recipe['id'] }}">{{ recipe['title'] }}</a></h5>
+                  {% if 'likes' not in recipe%}
+                      How many minutes for preparation? {{recipe['preparationMinutes']}} <br>
+                      How many minutes for cooking? {{recipe['cookingMinutes']}}  <br>
+                      How many likes has this recipe? {{recipe['aggregateLikes']}}  <br>
+                  {% else %}
+                      How many your ingridients? {{recipe['usedIngredientCount']}} <br>
+                      How many missed ingridients? {{recipe['missedIngredientCount']}}  <br>
+                      How many likes has this recipe? {{recipe['likes']}}  <br>
+                  {% endif %}
+              </div>
+          </li> <br>
+      {% endfor %}
+  </ul>
+</div >
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+
+  <div>
+    <div>
+      <form method="POST">
+        {{ form.csrf_token }}
+        <div>
+          {% if form.text.errors %}
+            {% for error in form.text.errors %}
+              <span>
+            {{ error }}
+          </span>
+            {% endfor %}
+          {% endif %}
+          {{ form.title(placeholder="Enter Title") }}
+          {{ form.text(placeholder="Enter text") }}
+        </div>
+        <button>Add my Post!</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

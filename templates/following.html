@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} Followed groups {% endblock %}
+{% block body %}
+
+{% for followed_group in user.following %}
+
+<div>
+  <div>
+    <div>
+      <div>
+        <a href="/group/{{ followed_group.id }}">
+          <p>@{{ followed_group.title }}</p>
+        </a>
+        {% if g.user.is_following(followed_group) %}
+          <form method="POST"
+                action="/user/stop-following/{{ followed_group.id }}">
+            <button>Unfollow</button>
+          </form>
+        {% else %}
+          <form method="POST" action="/user/follow/{{ followed_group.id }}">
+            <button>Follow</button>
+          </form>
+        {% endif %}
+
+      </div>
+      <p>{{ user.bio }}</p>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}

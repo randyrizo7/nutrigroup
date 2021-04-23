@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Create Group {% endblock %}
+{% block body %}
+<h1>Create your group!</h1>
+   
+      <form method="POST">
+        {{ form.csrf_token }}
+        <div>
+          {% if form.title.errors %}
+            {% for error in form.title.errors %}
+              <span>
+            {{ error }}
+          </span>
+            {% endfor %}
+          {% endif %}
+          {{ form.title(placeholder="Title", class="form-control", rows="3") }}
+          {{ form.description(placeholder="Descibe your group", class="form-control", rows="3") }}
+        </div>
+        <button>Create Group</button>
+      </form>
+    
+  
+
+{% endblock %}
