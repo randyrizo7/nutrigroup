@@ -2,9 +2,9 @@
 {% block title %} Log in {% endblock %}
 {% block body %}
 
-<div class="mb-3 row">
-  <div>
-    <h2>Login</h2>
+<main>
+  <div class="form-container">
+    <h2 class="sign-in-h2">Hi Again! </h2>
     <form method="POST">
       {{ form.hidden_tag() }}
 
@@ -15,12 +15,14 @@
         {{ field(placeholder=field.label.text, class="form-control") }}
       {% endfor %}
 
-      <button>Log in</button>
+      <button class="sign-in-button">Log in</button>
     </form>
   </div>
-</div>
+</main>
+
 
 {% endblock %}
+
 
 
 

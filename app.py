@@ -1,6 +1,6 @@
 
 
-from flask import Flask, render_template, request, flash, redirect, session, g, abort
+from flask import Flask, render_template, request, flash, redirect, session, g, abort, url_for
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///nutrigroup'
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.config['SECRET_KEY'] = "Secret123"

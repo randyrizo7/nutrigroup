@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+  }
+
+
+main {
+    min-height: 100vh;
+  background: linear-gradient(to right top, #ff8474, #ffc996);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-up-h2 {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.sign-in-h2 {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+
+.form-container {
+    background: white;
+    min-height: 80vh;
+    width: 70%;
+    background: linear-gradient(to right bottom, rgba(255,255,255,1), rgba(255,255,255,.1));
+    border-radius: 2rem;
+
+}
+
+form {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    
+
+}
+input {
+    border: 2px solid #a5778f;
+    border-radius: 25px;
+    width: 50vw;
+    text-align: center;
+    padding: .5rem;
+    transition: all .5s;
+    
+}
+
+.sign-up-button {
+    background-color: rgba(135, 219, 212, .4);
+    border: none;
+    padding: 1rem .5rem;
+    font-weight: 700;
+    border-radius: 300px;
+    transition: all .5s;
+    text-transform: uppercase;
+    margin-top: 5%;
+    font-size: 2rem;
+}
+
+.sign-up-button:hover {
+    background-color: rgb(3, 143, 57);
+    transform: scale(1.1) ;
+    box-shadow: 4px 4px 5px #888888;
+}
+
+.sign-in-button {
+    background-color: rgba(135, 219, 212, .4);
+    border: none;
+    padding: 1rem .5rem;
+    font-weight: 700;
+    border-radius: 300px;
+    transition: all .5s;
+    text-transform: uppercase;
+    margin-top: 5%;
+    font-size: 2rem;
+}
+
+.sign-in-button:hover {
+    background-color: rgb(3, 143, 57);
+    transform: scale(1.1) ;
+    box-shadow: 4px 4px 5px #888888;
+}
+
+
+
+input:hover {
+    box-shadow: .2rem .2rem rgba(0,0,0,.4);
+    transform: scale(1.1) ;
+}
+
+
+
+
+
