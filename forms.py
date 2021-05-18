@@ -1,5 +1,6 @@
+from flask.app import Flask
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField
+from wtforms import StringField, PasswordField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Email, Length
 
 class PostForm(FlaskForm):
@@ -42,3 +43,8 @@ class CreateGroupForm(FlaskForm):
 
     title = StringField('Title of group', validators=[DataRequired()])
     description = TextAreaField('Description of group', validators=[DataRequired()])
+
+class FavoritesForm(FlaskForm):
+
+    meal_id=IntegerField('Meal ID')
+    img=StringField('Image')

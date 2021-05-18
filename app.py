@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, flash, redirect, session, g, 
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
-from forms import UserAddForm, UserEditForm, LoginForm, PostForm, CreateGroupForm
+from forms import FavoritesForm, UserAddForm, UserEditForm, LoginForm, PostForm, CreateGroupForm
 from models import db, connect_db, User, Group, Post, Follows, Favorite 
 
 import requests, email_validator
@@ -137,7 +137,13 @@ def logout():
 def user_profile(user_id):
   """Show user profile"""
 
+  if not g.user:
+    flash("ACCESS unauthorized.", "danger")
+    return redirect("/login")
+
   #list all groups created by this user. 
+
+
 
   user = User.query.get_or_404(user_id)
   groups = (Group.query.filter(Group.creator_id == user_id).all())
@@ -145,6 +151,8 @@ def user_profile(user_id):
   #list all favortited meals by this user. 
 
   favorites = (Favorite.query.filter(Favorite.user_id == user_id).all())
+
+  
 
   return render_template('/profile.html', user=user, groups=groups, favorites=favorites)
 
@@ -365,6 +373,7 @@ def get_recipe():
     ingedientsWidget = "recipes/{0}/ingredientWidget".format(recipe_id)
     equipmentWidget = "recipes/{0}/equipmentWidget".format(recipe_id)
     nutritionWidget = "recipes/{0}/nutritionWidget".format(recipe_id)
+    image = "https://spoonacular.com/recipeImages/{0}-240x150.jpg".format(recipe_id)
 
     recipe_info = requests.request("GET", BASE_URL + recipe_info_endpoint, params=key).json()
     recipe_headers = {'Accept': "text/html"}
@@ -374,17 +383,18 @@ def get_recipe():
     recipe_info['inregdientsWidget'] = requests.request("GET", BASE_URL + ingedientsWidget, headers=recipe_headers, params={**querystring, **key}).text
     recipe_info['equipmentWidget'] = requests.request("GET", BASE_URL + equipmentWidget, headers=recipe_headers, params={**querystring, **key}).text
     recipe_info['nutritionWidget'] = requests.request("GET", BASE_URL + nutritionWidget, headers=recipe_headers, params={**querystring, **key}).text  
- 
+    
+    form = FavoritesForm()
+    
+    if request.method == "POST":
+        favorite = Favorite(meal_id=recipe_id, img = image)
+        g.user.favorite.append(favorite)
+        db.session.commit()
+        return redirect(f"/user/{g.user.id}")
 
-    favorite = Favorite(meal_id=recipe_id)
+    return render_template('recipe.html', recipe=recipe_info, form=form)
 
-    g.user.favorite.append(favorite)
-        
-
-    db.session.commit()
-
-        
-    return render_template('recipe.html', recipe=recipe_info)
+   
 
 if __name__ == '__main__':
   app.run()

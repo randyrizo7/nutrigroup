@@ -5,12 +5,12 @@
 
       <ul>
         <li>
-          <a href="{{ url_for('user_profile', user_id=group.user.id) }}">
-            Creator: {{ group.user.first_name }}'s
+          <a href="/user/{{ group.creator_id }}">
+            Creator: {{ group.user.first_name }}
           </a>
           <div>
             <div>
-              <a href="/users/{{ group.user.id }}">@{{ group.user.username }}</a>
+              <a href="/user/{{ group.user.id }}">@{{ group.user.username }}</a>
               {% if g.user %}
                 {% if g.user.id == group.user.id %}
                   <form method="POST"

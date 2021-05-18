@@ -1,9 +1,26 @@
-{% extends 'base.html' %}
-{% block title %} Welcome to page {% endblock %}
-{% block body %}
+{% extends 'base.html' %} {% block title %} Welcome to page {% endblock %} {%
+block body %}
+
 <main>
-    <h1 class="username"> Welcome to {{ user.username }}'s page</h1>
-    
+  <div class="profile-container">
+    <h1 class="username">Welcome to {{ user.username }}'s page</h1>
+    {% for group in groups %}
+
+    <section>
+      <li class="profile-group-container">
+        <a href="/group/{{ group.id }}">{{ group.title }}</a>
+        <p>{{ group.description }}</p>
+      </li>
+      {% endfor %}
+
+      {% for favorite in favorites %}
+
+      <p> {{ favorite.meal_id }}</p>
+     
+
+      {% endfor %}
+    </section>
+  </div>
 </main>
 
 {% endblock %}

@@ -28,6 +28,13 @@ main {
     font-weight: 600;
 }
 
+.username {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
 
 .form-container {
     background: white;
@@ -36,6 +43,25 @@ main {
     background: linear-gradient(to right bottom, rgba(255,255,255,1), rgba(255,255,255,.1));
     border-radius: 2rem;
 
+}
+
+.profile-container {
+    background: white;
+    min-height: 80vh;
+    width: 70%;
+    background: linear-gradient(to right bottom, rgba(255,255,255,1), rgba(255,255,255,.1));
+    border-radius: 2rem;
+
+}
+
+.profile-group-container {
+    min-height: 10vh;
+    width: 30%;
+    background: linear-gradient(to right bottom, rgb(150, 136, 136), rgba(150,136,136,.1));
+    border-radius: 2rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 form {
